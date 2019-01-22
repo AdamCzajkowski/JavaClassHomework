@@ -1,0 +1,3 @@
+﻿Oto pierwsza,
+i kolejna linia w pliku
+Zażółć gęślą jaźń - test polskich liter.
