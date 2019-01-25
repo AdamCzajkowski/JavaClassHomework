@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.math.BigInteger;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,6 +16,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.lang.Math.*;
 
 public class Main {
 // exercise 1
@@ -58,7 +61,7 @@ public class Main {
 
 // exercise 5
     static void ex5_readFromURLSourceOfPage() throws IOException{
-        URL url = new URL("https://www.wp.pl/"); //read source of URL
+        URL url = new URL("http://www.milocin.com.pl/karczma,kontakt.html"); //read source of URL
         Scanner scanner = new Scanner(url.openStream());
 
         while(scanner.hasNextLine()){ //until EOF
@@ -85,8 +88,9 @@ public class Main {
     }
 
 // exercise 7
+    //bugs in code, not done
     static void ex7_readFromURLOnlyEmails() throws IOException{
-        URL url = new URL("https://www.wp.pl/"); //read source of URL
+        URL url = new URL("http://www.milocin.com.pl/karczma,kontakt.html"); //read source of URL
         Scanner scanner = new Scanner(url.openStream());
 
 
@@ -95,13 +99,35 @@ public class Main {
         while(scanner.hasNextLine()) { //until EOF
             String next = scanner.nextLine();
             Matcher objectTypeMatcher = objectTypePattern.matcher(next);
-            if (objectTypeMatcher.matches()) {
+            System.out.println(objectTypeMatcher.find());
+            if (objectTypeMatcher.find()) {
                 System.out.println(next);
             } else {
                 System.out.println("no result");
             }
         }
     }
+
+// exercise 8
+    static void ex8_BigIntiger(){
+        System.out.println("How big is BigIntiger");
+        BigInteger sum = BigInteger.valueOf(1);
+
+        while(true){
+            System.out.println(sum);
+            sum = sum.add(BigInteger.valueOf(1_000_000_000));
+        }
+        //2^37
+    }
+
+//exercise 9
+    //(int dia) -> Math.PI
+    //static void ex9_FieldCicurferenceVolumeOfCircle(){
+       // Scanner scanner = new Scanner(System.in);
+       // System.out.println("Submit diameter of cicrle [mm]: ");
+     //   int diameter = scanner.nextInt();
+
+   // }
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //ex1_readStringFromFile();
         //ex2_readIntFromFileAndPrintSum();
@@ -109,6 +135,7 @@ public class Main {
         //ex4_readFileAndMovePointerToHashText();
         //ex5_readFromURLSourceOfPage();
         //ex6_readFromURLSourceOfPageAdvance();
-        ex7_readFromURLOnlyEmails();
+        //ex7_readFromURLOnlyEmails();
+        ex8_BigIntiger();
     }
 }
